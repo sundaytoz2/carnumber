@@ -19,6 +19,8 @@ sudo apt install libtesseract-dev
 window wsl2 opencv problem
 
 ```bash
-DISPLAY=:0
-python main.py
+~/sundaytoz/carnumber main !1 ?1                                                                                                                                      ✘ IOT  carnumber choigawoon@teamff 02:11:23 PM
+❯ export DISPLAY=$(awk '/nameserver / {print $2; exit}' /etc/resolv.conf 2>/dev/null):0.0
+~/sundaytoz/carnumber main !1 ?1                                                                                                                                             carnumber choigawoon@teamff 02:11:26 PM
+❯ DISPLAY=:0
 ```

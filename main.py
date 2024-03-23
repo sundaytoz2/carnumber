@@ -2,7 +2,7 @@ import cv2
 import pytesseract
 
 # 이미지 파일을 로드합니다
-image = cv2.imread('test.jpg')
+image = cv2.imread('samples/1.jpg')
 
 # 번호판 인식을 위한 이미지 전처리
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
