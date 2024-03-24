@@ -24,3 +24,9 @@ window wsl2 opencv problem
 ~/sundaytoz/carnumber main !1 ?1                                                                                                                                             carnumber choigawoon@teamff 02:11:26 PM
 ❯ DISPLAY=:0
 ```
+
+# Firewall
+
+```
+netsh interface portproxy add v4tov4 listenport=5173 listenaddress=0.0.0.0 connectport=5173 connectaddress=172.24.173.72
+```
