@@ -5,6 +5,9 @@ import subprocess
 import os
 import shutil
 from starlette.middleware.cors import CORSMiddleware
+import paddleocr
+
+OCR_Engine = paddleocr.PaddleOCR(use_angle_cls=True, lang='korean', enable_mkldnn=True)  # need to run only once to download and load model into memory
 
 app = FastAPI()
 
@@ -24,15 +27,10 @@ async def create_upload_file(file: UploadFile = File(...)):
     with open("temp.jpg", "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
     
-    command = "conda run -n carnumber_paddleocr paddleocr --image_dir temp.jpg --lang korean | grep -A 1 'ppocr INFO'"
-    result = subprocess.run(
-        # ['conda', 'run', '-n', 'carnumber_paddleocr', 'paddleocr', '--image_dir', 'temp.jpg', '--lang', 'korean', '|', 'grep', '-A', '1', 'ppocr INFO'],
-        command,
-        capture_output=True, text=True, shell=True
-    )
-    # os.remove("temp.jpg")  # Remove the temporary file after processing
-    print(result.stdout)
-    return {"result": result.stdout}
+    result = OCR_Engine.ocr("temp.jpg")
+    
+    print(result)
+    return {"result": result}
 
 
 @app.post("/submit-form/")
